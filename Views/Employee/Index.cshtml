@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Employee";
+}
+
+<div class="text-center">
+    <h1 class="display-6 font-monospace fw-bold text-center">Employee Detail</h1>
+    
+</div>
+
+
+@*@model WebApplication1.Models.Employee*@
+
+<a asp-controller="Employee" asp-action="AddEmployee" class="btn btn-primary">Add New</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Job</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+         
+
+
+        @foreach(var Employee in Model){
+
+        
+        
+           <tr>
+                
+@*
+             @if (!(@Model is null))
+              {*@
+                <th scope="row">@Employee.Id</th>
+                <td>@Employee.Email</td>
+                <td>@Employee.Name</td>
+                <td>@Employee.Address</td>
+                <td>@Employee.Job</td>
+
+             @*}*@
+               
+                <td >
+                    <div class="row">
+                        <div class="col-6 mx-auto">
+                            <div class="d-flex align-items-center justify-content-evenly">
+                    <Form method="get" asp-controller="Employee" asp-action="Edit">
+                    <input type="hidden" name="id" value="@Employee.Id">
+                        <button type="submit" class="btn btn-success px-2">Update</button>
+                    </Form><br>
+
+                  
+
+                    <Form method="get" asp-controller="Employee" asp-action="Delete">
+                        <input type="hidden" name="id" value="@Employee.Id">
+                        <button type="submit" class="btn btn-danger ms-lg-2">Delete</button>
+                    </Form><br>
+                    </div>
+                    </div>
+                    </div>
+            </td>
+           </tr>
+          }
+          
+            
+        
+        </tbody>
+    </table>

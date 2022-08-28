@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Update Employee";
+}
+<h2>@ViewData["Title"]</h2>
+@model WebApplication1.Models.Employee
+<form class="form-inline" asp-controller="Employee" asp-action="UpdateEmployee" method="get">
+    <div class="form-group">
+        <label class="sr-only" for="id"></label>
+        <input type="hidden" class="form-control"  asp-for="Id" id="id">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="email">Email address:</label>
+        <input type="email" class="form-control" asp-for="Email" id="email">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="name">Name:</label>
+        <input type="text" class="form-control" asp-for="Name" id="name">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="address">Address:</label>
+        <input type="text" class="form-control" asp-for="Address" id="address">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="job">Job Detail:</label>
+        <input type="text" class="form-control" asp-for="Job" id="job">
+    </div><br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
