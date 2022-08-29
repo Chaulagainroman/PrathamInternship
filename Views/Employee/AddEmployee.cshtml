@@ -4,7 +4,7 @@
 }
 <h2>@ViewData["Title"]</h2>
 
-<form class="form-inline" asp-controller="Employee" asp-action="AddEmployee" method="post">
+<form class="form-inline" asp-controller="Employee" enctype="multipart/form-data" asp-action="AddEmployee" method="post">
     <div class="form-group">
         <label class="sr-only" for="id"></label>
         <input type="hidden" class="form-control" name="id" id="id">
@@ -24,6 +24,43 @@
     <div class="form-group">
         <label class="sr-only" for="job">Job Detail:</label>
         <input type="text" class="form-control" name="job" id="job">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">Phone</label>
+            <input type="tel" class="form-control" name="Phone" id="inputCity">
+        </div>
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">Post</label>
+            <select class="form-select" aria-label="Default select example" name="Post">
+                <option value="BCA">BCA</option>
+                <option value="BBA">BIM</option>
+                <option value="BIM">BIT</option>
+                <option value="BBS">MCA</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-6">
+        <label for="inputZip" class="form-label">DOB:</label>
+        <input type="Date" class="form-control" id="inputdate" name="Dob">
+    </div>
+    <div class="col-md-6 py-5 ">
+        <label class="form-check-label" for="inlineCheckbox1">Gender :</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineCheckbox1" value="Male" name="Gender">
+            <label class="form-check-label" for="inlineCheckbox1">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="inlineCheckbox2" value="Female" name="Gender">
+            <label class="form-check-label" for="inlineCheckbox2">Female</label>
+        </div>
+    </div>
+        </div>
+    <div class="form-group">
+        <label class="sr-only" for="formFilesm">Image:</label>
+        <input type="file" class="form-control" name="Image" id="formFilesm">
     </div><br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+<button type="submit" class="btn btn-primary">Submit</button>
 </form>

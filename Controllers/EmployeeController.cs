@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using WebApplication1.ViewModel;
 
 namespace WebApplication1.Controllers
 {
@@ -10,17 +11,18 @@ namespace WebApplication1.Controllers
 
         private ApplicationDbContext Context { get; }
         public object DbContext { get; private set; }
-
-        public EmployeeController(ApplicationDbContext _context)
+        public readonly IWebHostEnvironment WebHostEnvironment;
+        public EmployeeController(ApplicationDbContext _context, IWebHostEnvironment webHostEnvironment)
         {
             this.Context = _context;
+            WebHostEnvironment = webHostEnvironment;
         }
         [HttpGet]
         public IActionResult Index()
         {
 
-         
-         return View(Context.Employees.ToList());
+
+            return View(Context.Employees.ToList());
         }
         public IActionResult AddEmployee()
         {
@@ -28,8 +30,10 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddEmployee(Employee e)
+        public IActionResult AddEmployee(EmployeeVM e)
         {
+            string StringFile = upload(e);
+
             var ViewModel = new Employee()
             {
                 Id = e.Id,
@@ -37,32 +41,42 @@ namespace WebApplication1.Controllers
                 Email = e.Email,
                 Address = e.Address,
                 Job = e.Job,
+                Phone = e.Phone,
+                Post = e.Post,
+                Dob = e.Dob,
+                Gender = e.Gender,
+                Image = StringFile
             };
             this.Context.Employees.Add(ViewModel);
             this.Context.SaveChanges();
             /*return View(Context.Employees.ToList());*/
-            return View();
+            return RedirectToAction("Index");
         }
 
-       
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
             var data = Context.Employees.Find(id);
-    
+
             return View(data);
 
         }
         [HttpGet]
-        public IActionResult UpdateEmployee(Employee e)
+        public IActionResult UpdateEmployee(EmployeeVM e)
         {
             var employee = Context.Employees.Find(e.Id);
             employee.Name = e.Name;
             employee.Email = e.Email;
             employee.Address = e.Address;
             employee.Job = e.Job;
+            employee.Phone = e.Phone;
+            employee.Post = e.Post;
+            employee.Dob = e.Dob;
+            employee.Gender = e.Gender;
+            
             Context.SaveChanges();
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
 
 
         }
@@ -74,6 +88,24 @@ namespace WebApplication1.Controllers
             Context.SaveChanges();
             return RedirectToAction("Index");
 
+        }
+
+        public string upload(EmployeeVM e)
+        {
+            string fileName = "";
+            if (e.Image != null)
+            {
+                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
+                fileName = Guid.NewGuid().ToString() + "_" + e.Image.FileName;
+                string filePath = Path.Combine(uploadDir, fileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    e.Image.CopyTo(fileStream);
+                }
+
+
+               }
+            return fileName;
         }
     }
  }

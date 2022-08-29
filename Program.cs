@@ -4,6 +4,7 @@ using WebApplication1.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<DbContext,ApplicationDbContext>();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

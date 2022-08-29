@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Employee";
+    int a = 1;
 }
 
 <div class="text-center">
@@ -10,15 +11,20 @@
 
 @*@model WebApplication1.Models.Employee*@
 
-<a asp-controller="Employee" asp-action="AddEmployee" class="btn btn-primary">Add New</a>
+<a asp-controller="Employee" asp-action="AddEmployee" class="btn btn-primary table-hover">Add Employee</a>
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">SN</th>
             <th scope="col">Email</th>
             <th scope="col">Name</th>
             <th scope="col">Address</th>
             <th scope="col">Job</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Post</th>
+            <th scope="col">Dob</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Image</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -33,15 +39,24 @@
            <tr>
                 
 @*
-             @if (!(@Model is null))
+             
               {*@
-                <th scope="row">@Employee.Id</th>
+                  <th>@a</th>
+                @*<th scope="row">@Employee.Id</th>*@
                 <td>@Employee.Email</td>
                 <td>@Employee.Name</td>
                 <td>@Employee.Address</td>
                 <td>@Employee.Job</td>
-
-             @*}*@
+                <td>@Employee.Phone</td>
+                <td>@Employee.Post</td>
+                <td>@Employee.Dob.ToString("dd-mm-yyyy")</td>
+                <td>@Employee.Gender</td>
+                <td><img src="Images/@Employee.Image" style="width:30px; height:30px"/></td>
+                
+                @{
+                    a++;
+                }
+             
                
                 <td >
                     <div class="row">
