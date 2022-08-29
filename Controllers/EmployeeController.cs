@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
             this.Context.Employees.Add(ViewModel);
             this.Context.SaveChanges();
             /*return View(Context.Employees.ToList());*/
-            return RedirectToAction("Index");
+            return View();
         }
 
        
