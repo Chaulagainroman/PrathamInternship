@@ -107,6 +107,28 @@ namespace WebApplication1.Controllers
                }
             return fileName;
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+
+        }
+        public IActionResult Profile()
+        {
+            return View();
+
+        }
+        public IActionResult Error()
+        {
+            return View();
+
+        }
+
+        public IActionResult LeaveApplication()
+        {
+            return View();
+
+        }
     }
  }
 

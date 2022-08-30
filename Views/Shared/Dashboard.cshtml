@@ -45,7 +45,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="~/assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">PrathamIT</span>
+        <span class="d-none d-lg-block">EMS</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -139,63 +139,54 @@
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-controller="Employee" asp-action="AddEmployee">
+                    <i class="bi bi-question-circle"></i>
+                    <span>Add Employee</span>
+                </a>
+            </li>
+            </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" asp-controller="Employee" asp-action="Index">
                     <i class="bi bi-person"></i>
-                    <span>Employee Table</span>
+                    <span>View Employee</span>
                 </a>
             </li>
-    
-
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-controller="Employee" asp-action="LeaveApplication">
+                    <i class="bi bi-card-list"></i>
+                    <span>Apply For Leave</span>
+                </a>
+            </li><!-- End Register Page Nav -->
+            
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" asp-controller="Employee" asp-action="Profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-question-circle"></i>
-          <span>F.A.Q</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
+     
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+                <a class="nav-link collapsed" asp-controller="Employee" asp-action="Contact">
           <i class="bi bi-envelope"></i>
           <span>Contact</span>
         </a>
       </li><!-- End Contact Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
+      
+
+      
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
-        </a>
-      </li><!-- End Login Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
+                <a class="nav-link collapsed" asp-controller="Employee" asp-action="Error">
           <i class="bi bi-dash-circle"></i>
           <span>Error 404</span>
         </a>
       </li><!-- End Error 404 Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
-        </a>
-      </li><!-- End Blank Page Nav -->
+     
 
     </ul>
 
