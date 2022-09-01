@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Data;
 using WebApplication1.Models;
 using WebApplication1.ViewModel;
@@ -12,16 +13,20 @@ namespace WebApplication1.Controllers
         private ApplicationDbContext Context { get; }
         public object DbContext { get; private set; }
         public readonly IWebHostEnvironment WebHostEnvironment;
-        public EmployeeController(ApplicationDbContext _context, IWebHostEnvironment webHostEnvironment)
+        private readonly INotyfService _notyf;
+        
+        public EmployeeController(ApplicationDbContext _context, IWebHostEnvironment webHostEnvironment, INotyfService notyf)
         {
             this.Context = _context;
             WebHostEnvironment = webHostEnvironment;
+            _notyf = notyf;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
 
-
+           
             return View(Context.Employees.ToList());
         }
         public IActionResult AddEmployee()
@@ -49,7 +54,10 @@ namespace WebApplication1.Controllers
             };
             this.Context.Employees.Add(ViewModel);
             this.Context.SaveChanges();
+
             /*return View(Context.Employees.ToList());*/
+            _notyf.Success("Inserted Successfully");
+           
             return RedirectToAction("Index");
         }
 
@@ -74,8 +82,9 @@ namespace WebApplication1.Controllers
             employee.Post = e.Post;
             employee.Dob = e.Dob;
             employee.Gender = e.Gender;
-            
+
             Context.SaveChanges();
+            _notyf.Success("Updated Successfully");
             return RedirectToAction("Index");
 
 
@@ -86,6 +95,7 @@ namespace WebApplication1.Controllers
             var data = Context.Employees.Find(id);
             Context.Employees.Remove(data);
             Context.SaveChanges();
+            _notyf.Error("Deleted Successfully");
             return RedirectToAction("Index");
 
         }
@@ -104,20 +114,22 @@ namespace WebApplication1.Controllers
                 }
 
 
-               }
+            }
             return fileName;
         }
 
-        public IActionResult Contact()
-        {
-            return View();
 
-        }
         public IActionResult Profile()
         {
             return View();
 
         }
+        public IActionResult Contact()
+        {
+            return View();
+
+        }
+
         public IActionResult Error()
         {
             return View();
@@ -129,6 +141,16 @@ namespace WebApplication1.Controllers
             return View();
 
         }
-    }
- }
+        public IActionResult register()
+        {
+            return View();
 
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+    }
+}

@@ -22,6 +22,7 @@ namespace WebApplication1.Data
 
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

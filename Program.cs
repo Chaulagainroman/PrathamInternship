@@ -1,3 +1,4 @@
+using AspNetCoreHero.ToastNotification;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 
@@ -5,6 +6,7 @@ using WebApplication1.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<DbContext,ApplicationDbContext>();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 2; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -36,7 +38,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Landing}/{id?}");
 
 app.Run();
 
