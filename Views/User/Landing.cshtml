@@ -43,7 +43,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-lg-between">
 
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">EMS<span>.</span></a></h1>
+      <h1 class="logo me-auto me-lg-0"><a href="index.html">EMS</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -197,36 +197,33 @@
                                                       
                                                     </div>
 
-                                                    <form class="row g-3 needs-validation" novalidate>
+                                                <form class="row g-3 needs-validation" asp-action="Login" asp-controller="Home" novalidate>
 
                                                         <div class="col-12">
-                                                            <label for="yourUsername" class="form-label">Username</label>
+                                                            <label for="email" class="form-label">Email</label>
                                                             <div class="input-group has-validation">
-                                                                <span class="input-group-text" id="inputGroupPrepend"></span>
-                                                                <input type="text" name="username" class="form-control" id="yourUsername" required>
-                                                                <div class="invalid-feedback">Please enter your username.</div>
+                                                                <span class="input-group-text" id="Email"></span>
+                                                                <input type="text" name="email" class="form-control" id="email" required>
+                                                                <div class="invalid-feedback">Please enter your Email.</div>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-12">
                                                             <label for="yourPassword" class="form-label">Password</label>
-                                                            <input type="password" name="password" class="form-control" id="yourPassword" required>
+                                                            <input type="password" name="password" class="form-control" id="password" required>
                                                             <div class="invalid-feedback">Please enter your password!</div>
                                                         </div>
-
+@*
                                                         <div class="col-12">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
                                                                 <label class="form-check-label" for="rememberMe">Remember me</label>
                                                             </div>
-                                                        </div>
+                                                        </div>*@
                                                         <div class="col-12">
                                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                                         </div>
-                                                        <div class="col-12">
-                                                            @*<a asp-controller="Employee" asp-action="" class="btn btn-primary table-hover">Add Employee</a>*@
-                                                            <p class="small mb-0">Don't have account? <a href="../Employee/register.cshtml">Create an account</a></p>
-                                                        </div>
+                                                       
                                                     </form>
 
                                                 </div>

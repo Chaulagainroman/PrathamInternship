@@ -25,8 +25,6 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-
-           
             return View(Context.Employees.ToList());
         }
         public IActionResult AddEmployee()
@@ -37,28 +35,38 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult AddEmployee(EmployeeVM e)
         {
-            string StringFile = upload(e);
-
-            var ViewModel = new Employee()
+            if (ModelState.IsValid)
             {
-                Id = e.Id,
-                Name = e.Name,
-                Email = e.Email,
-                Address = e.Address,
-                Job = e.Job,
-                Phone = e.Phone,
-                Post = e.Post,
-                Dob = e.Dob,
-                Gender = e.Gender,
-                Image = StringFile
-            };
-            this.Context.Employees.Add(ViewModel);
-            this.Context.SaveChanges();
 
-            /*return View(Context.Employees.ToList());*/
-            _notyf.Success("Inserted Successfully");
-           
-            return RedirectToAction("Index");
+                string StringFile = upload(e);
+
+                var data = new Employee()
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Email = e.Email,
+                    Address = e.Address,
+                    Job = e.Job,
+                    Phone = e.Phone,
+                    Post = e.Post,
+                    Dob = e.Dob,
+                    Gender = e.Gender,
+                    Image = StringFile
+                };
+                this.Context.Employees.Add(data);
+                this.Context.SaveChanges();
+                _notyf.Success("Inserted Successfully");
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                TempData["errorMessage"] = "";
+
+            }
+            return View("AddEmployee");
+
+            
         }
 
 
@@ -118,7 +126,7 @@ namespace WebApplication1.Controllers
             return fileName;
         }
 
-
+    
         public IActionResult Profile()
         {
             return View();
@@ -145,11 +153,6 @@ namespace WebApplication1.Controllers
         {
             return View();
 
-        }
-
-        public IActionResult Login()
-        {
-            return View();
         }
 
     }

@@ -15,6 +15,21 @@
 
 
 @*<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />*@
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<script>
+    let oTable = $('#employee').DataTable({
+        paging: false,
+        "order": []
+    });
+
+    //$('#simplesearch').keyup(function() {
+    //    oTable.search($(this).val()).draw();
+    })
+    </script>*@
+
 
 
 <table class="table" id="employee">
@@ -95,14 +110,4 @@
         </tbody>
     </table>
 
-    <script>
-    //let oTable = $('#employee').DataTable({
-    //    paging: false,
-    //    "order": []
-    //});
-
-    //$('#mysearch').keyup(function () {
-    //    oTable.search($(this).val()).draw();
-    //})
-    
-    </script>
+   
