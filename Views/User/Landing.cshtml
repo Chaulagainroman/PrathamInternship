@@ -1,4 +1,4 @@
-
+@model WebApplication1.ViewModel.UserVM
 @{
     Layout = null;
 }
@@ -108,13 +108,14 @@
                                                 </div>
 
                                                 <form class="row g-3 needs-validation" asp-action="Register" asp-controller="User" novalidate>
-
+                                                     <h3 class="text-danger text-center">@TempData["errorMessage"]</h3>
                                                     <div class="col-12">
                                                         <label for="yourUsername" class="form-label">Username</label>
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text" id="inputGroupPrepend"></span>
                                                             <input type="text" name="name" class="form-control" id="name" required>
                                                             <div class="invalid-feedback">Please enter your username.</div>
+                                                             <span asp-validation-for="Name" class="text-danger"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -123,6 +124,7 @@
                                                             <span class="input-group-text" id="inputGroupPrepend"></span>
                                                             <input type="email" name="email" class="form-control" id="email" required>
                                                             <div class="invalid-feedback">Please enter your Email.</div>
+                                                             <span asp-validation-for="Email" class="text-danger"></span>
                                                         </div>
                                                     </div>
 
@@ -131,6 +133,7 @@
                                                         <label for="yourPassword" class="form-label">Password</label>
                                                         <input type="password" name="password" class="form-control" id="yourPassword" required>
                                                         <div class="invalid-feedback">Please enter your password!</div>
+                                                         <span asp-validation-for="Password" class="text-danger"></span>
                                                     </div>
 
                                                     <div class="col-12">
@@ -140,7 +143,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
-                                                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                                                        <button class="btn btn-primary w-100" type="submit">Submit</button>
                                                     </div>
                                                   
                                                 </form>
@@ -198,13 +201,14 @@
                                                     </div>
 
                                                 <form class="row g-3 needs-validation" asp-action="Login" asp-controller="Home" novalidate>
-
+                                                    <h3 class="text-danger text-center">@TempData["errorMessage"]</h3>
                                                         <div class="col-12">
                                                             <label for="email" class="form-label">Email</label>
                                                             <div class="input-group has-validation">
                                                                 <span class="input-group-text" id="Email"></span>
                                                                 <input type="text" name="email" class="form-control" id="email" required>
                                                                 <div class="invalid-feedback">Please enter your Email.</div>
+                                                                 <span asp-validation-for="Email" class="text-danger"></span>
                                                             </div>
                                                         </div>
 
@@ -212,6 +216,7 @@
                                                             <label for="yourPassword" class="form-label">Password</label>
                                                             <input type="password" name="password" class="form-control" id="password" required>
                                                             <div class="invalid-feedback">Please enter your password!</div>
+                                                             <span asp-validation-for="Password" class="text-danger"></span>
                                                         </div>
 @*
                                                         <div class="col-12">

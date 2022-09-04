@@ -10,7 +10,7 @@ namespace WebApplication1.Controllers
     public class UserController : Controller
     {
         private readonly ApplicationDbContext Context;
-       
+
         public readonly IWebHostEnvironment WebHostEnvironment;
         private readonly INotyfService _notyf;
 
@@ -32,21 +32,32 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Register(User u)
         {
-            string HashPassword = BCrypt.Net.BCrypt.HashPassword(u.Password);
-
-            var data = new User
+            if (ModelState.IsValid)
             {
-                Name = u.Name,
-                Email = u.Email,
-                Password = HashPassword
+                string HashPassword = BCrypt.Net.BCrypt.HashPassword(u.Password);
 
-            };
-            Context.Users.Add(data);
-            Context.SaveChanges();
-            /*_notyf.Success("Registered Successfully");*/
-             return RedirectToAction("Landing");
-        
+                var data = new User
+                {
+                    Name = u.Name,
+                    Email = u.Email,
+                    Password = HashPassword
+
+                };
+                Context.Users.Add(data);
+                Context.SaveChanges();
+                return RedirectToAction("Landing");
+            }
+            else
+            {
+
+                TempData["errorMessage"] = "";
+            }
+            return View("Register");
+
 
         }
+
+
     }
+    
 }

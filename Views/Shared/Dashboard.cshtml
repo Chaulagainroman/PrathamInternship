@@ -1,3 +1,5 @@
+@inject IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +29,9 @@
     <link href="~/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="~/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+
+   
+
   <!-- Template Main CSS File -->
     <link href="~/assets/css/style.css" rel="stylesheet">
 
@@ -48,7 +53,7 @@
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" id="mysearch" name="query" placeholder="Search" title="Enter search keyword">
+                <input type="text" id="mysearch" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
@@ -68,12 +73,12 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="~/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">@HttpContextAccessor.HttpContext.Session.GetString("Email")</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
+              <h6></h6>
               <span>Web Designer</span>
             </li>
             <li>
@@ -189,8 +194,7 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-
-    <div class="pagetitle">
+      <div class="pagetitle">
       
     </div><!-- End Page Title -->
         @RenderBody()
@@ -215,11 +219,11 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="~/assets/js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
+@*    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/jquery.tinymce.min.js"></script>
-  
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/jquery.tinymce.min.js"></script>*@
+    <script src="~/assets/js/main.js"></script>
+
          <script src="~/js/site.js" asp-append-version="true"></script>
          @await Component.InvokeAsync("Notyf")
          @RenderSection("Scripts", required: false)

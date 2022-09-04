@@ -18,6 +18,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
+builder.Services.AddSession(option=>
+{
+    option.IdleTimeout = TimeSpan.FromMinutes(60);
+
+});
+
 var app = builder.Build();
 app.Services.CreateScope().ServiceProvider.GetService<DbContext>().Database.Migrate();
 
@@ -33,7 +39,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 app.MapControllerRoute(

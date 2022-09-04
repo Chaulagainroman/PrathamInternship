@@ -14,21 +14,8 @@
 @*@model WebApplication1.Models.Employee*@
 
 
-@*<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />*@
-@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<link href="~/lib/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-
-<script>
-    let oTable = $('#employee').DataTable({
-        paging: false,
-        "order": []
-    });
-
-    //$('#simplesearch').keyup(function() {
-    //    oTable.search($(this).val()).draw();
-    })
-    </script>*@
 
 
 
@@ -57,12 +44,10 @@
         
         
            <tr>
-                
-@*
+          
              
-              {*@
+              
                   <th>@a</th>
-                @*<th scope="row">@Employee.Id</th>*@
                 <td>@Employee.Email</td>
                 <td>@Employee.Name</td>
                 <td>@Employee.Address</td>
@@ -102,12 +87,24 @@
            </tr>
           }
 
-       
-        
-          
-            
+
+
+
+
         
         </tbody>
     </table>
 
-   
+   @section Scripts
+   {
+    <script src="~/lib/datatables/js/jquery.dataTables.js" rel="stylesheet"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.js" rel="stylesheet"></script>
+    <script src="~/lib/datatables/js/Employee.js" rel="stylesheet"></script>
+
+   }
+    <style>
+        .dataTables_filter,
+        .dataTables_info {
+            display: none;
+        }
+    </style>

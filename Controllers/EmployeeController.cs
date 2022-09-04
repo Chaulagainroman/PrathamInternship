@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
         public object DbContext { get; private set; }
         public readonly IWebHostEnvironment WebHostEnvironment;
         private readonly INotyfService _notyf;
-        
+
         public EmployeeController(ApplicationDbContext _context, IWebHostEnvironment webHostEnvironment, INotyfService notyf)
         {
             this.Context = _context;
@@ -35,14 +35,16 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult AddEmployee(EmployeeVM e)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
+                return View("AddEmployee");
+            }
+            else
+            {
                 string StringFile = upload(e);
-
                 var data = new Employee()
                 {
-                    Id = e.Id,
+                   
                     Name = e.Name,
                     Email = e.Email,
                     Address = e.Address,
@@ -53,20 +55,18 @@ namespace WebApplication1.Controllers
                     Gender = e.Gender,
                     Image = StringFile
                 };
+
+
                 this.Context.Employees.Add(data);
                 this.Context.SaveChanges();
                 _notyf.Success("Inserted Successfully");
                 return RedirectToAction("Index");
 
             }
-            else
-            {
-                TempData["errorMessage"] = "";
-
-            }
-            return View("AddEmployee");
-
             
+
+
+
         }
 
 
@@ -126,7 +126,7 @@ namespace WebApplication1.Controllers
             return fileName;
         }
 
-    
+
         public IActionResult Profile()
         {
             return View();
@@ -149,11 +149,7 @@ namespace WebApplication1.Controllers
             return View();
 
         }
-        public IActionResult register()
-        {
-            return View();
 
-        }
 
     }
 }
