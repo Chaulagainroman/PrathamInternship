@@ -3,7 +3,7 @@
 }
 <h2>@ViewData["Title"]</h2>
 @model WebApplication1.Models.Employee
-<form class="form-inline" asp-controller="Employee" asp-action="UpdateEmployee" method="get">
+<form class="form-inline" asp-controller="Employee" enctype="multipart/form-data" asp-action="UpdateEmployee" method="post">
     <div class="form-group">
         <label class="" for="id"></label>
         <input type="hidden" class="form-control" asp-for="Id" id="id">
@@ -59,7 +59,7 @@
     </div>
     <div class="form-group">
         <label class="" for="formFilesm">Image:</label>
-        <input type="file" class="form-control" name="Image" id="formFilesm">
+        <input type="file" class="form-control" asp-for="Image" id="formFilesm">
     </div><br>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

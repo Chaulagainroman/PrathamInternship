@@ -7,13 +7,17 @@ using System.Security.Claims;
 using System.Xml.Linq;
 using WebApplication1.Data;
 using WebApplication1.Models;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Linq;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
+
+    
     public class HomeController : Controller
     {
         private ApplicationDbContext Context { get; }
@@ -33,7 +37,7 @@ namespace WebApplication1.Controllers
             return View();
 
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -65,6 +69,10 @@ namespace WebApplication1.Controllers
                     bool verified = BCrypt.Net.BCrypt.Verify(u.Password, res.Password);
                     if (verified)
                     {
+                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, u.Email) },
+                            CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                         HttpContext.Session.SetString("Email", res.Email);
                         _notyf.Success("Login in Successfully");
                         return RedirectToAction("Index");
@@ -81,6 +89,17 @@ namespace WebApplication1.Controllers
                 return Redirect("ErrorPage");
             }
             return Redirect("ErrorPage");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var stroedCookies = Request.Cookies.Keys;
+            foreach (var cookie in stroedCookies)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+            return Redirect("https://localhost:7264/");
         }
         public IActionResult About()
         {

@@ -1,0 +1,31 @@
+﻿@model WebApplication1.ViewModel.ViewEmployeeVM
+
+<div class="container">
+    <div class="row">
+        <div class="col-4 text-center pt-3">
+            <img src="~/Images/@Model.Image" style="width:40vh; height:40vh" />
+        </div>
+        <div class="col-8 container rounded bg-light shadow">
+            <h4 class="text-center pt-1 text-uppercase border">Detail Information</h4>
+            <div class="p-2">Email:<span style="color: blue">@Model.Email</span></div>
+            <div class="p-2">Name:<span style="color: blue">@Model.Name</span></div>
+            <div class="p-2">Address:<span style="color: blue">@Model.Address</span></div>
+           
+
+        </div>
+     </div>
+        <div class="row container rounded bg-light shadow mt-4">
+             <div class="p-2">Job:<span style="color: blue">@Model.Job</span></div>
+            <div class="p-2">Phone:<span style="color: blue">@Model.Phone</span></div>
+            <div class="p-2">Post:<span style="color: blue">@Model.Post</span></div>
+            <div class="p-2">Dob:<span style="color: blue">@Model.Dob</span></div>
+            <div class="p-2">Gender:<span style="color: blue">@Model.Gender</span></div>
+        </div>
+
+        <div class="ps-2 mt-3">
+        <a class="btn btn-success" href="/Employee/Edit/@Model.Id">Update</a>
+        <a class="btn btn-danger" href="/Employee/Delete/@Model.Id">Delete</a>
+
+        </div>
+    
+</div>

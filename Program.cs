@@ -1,4 +1,5 @@
 using AspNetCoreHero.ToastNotification;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 
@@ -17,10 +18,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(
    });
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-
-builder.Services.AddSession(option=>
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(60 * 1);
+        option.LoginPath = "/Home/Login";
+        option.AccessDeniedPath = "/Home/Login";
+    });
+    builder.Services.AddSession(option=>
 {
     option.IdleTimeout = TimeSpan.FromMinutes(60);
+    option.Cookie.HttpOnly = true;
+    option.Cookie.IsEssential = true;
+   
 
 });
 
@@ -40,6 +50,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -41,13 +41,8 @@
 
         @foreach(var Employee in Model){
 
-        
-        
-           <tr>
-          
-             
-              
-                  <th>@a</th>
+        <tr>
+                <th>@a</th>
                 <td>@Employee.Email</td>
                 <td>@Employee.Name</td>
                 <td>@Employee.Address</td>
@@ -67,10 +62,11 @@
                     <div class="row">
                         <div class="col-6 mx-auto">
                             <div class="d-flex align-items-center justify-content-evenly">
-                    <Form method="get" asp-controller="Employee" asp-action="Edit">
+                    <Form method="get" asp-controller="Employee" asp-action="Details">
                     <input type="hidden" name="id" value="@Employee.Id">
                                     <button type="submit" class="btn btn-success px-2" style="font-size: 10px;">
-                                        <i class="bi bi-pen" style="font-size: 15px;"></i></button>
+                                        <i class="bi bi-eye" style="font-size: 15px;"></i>
+                                    </button>
                     </Form><br>
 
                   
